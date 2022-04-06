@@ -1,0 +1,15 @@
+<p>choose-notes works!</p>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col" *ngFor="let note of notes">
+            <button type="button" (click)="add(note)">{{note.noteName}}</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col" *ngFor="let note of chosenNotes">
+            <div>{{note.noteName}} </div>
+        </div>
+    </div>
+</div>
