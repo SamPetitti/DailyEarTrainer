@@ -39,7 +39,9 @@ export class ChooseNotesComponent implements OnInit {
   }
 
   playMelody(): void {
-
+    var audio = new Audio('../../assets/DailyEarTrainerSamples.mp3');
+    audio.load();
+    audio.play();
   }
 
 
