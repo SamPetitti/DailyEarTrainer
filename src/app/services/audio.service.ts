@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Note } from '../notes/note';
 
 @Injectable({
@@ -12,8 +13,7 @@ export class AudioService {
       { noteName: "D" },
       { noteName: "E" },
       { noteName: "F" },
-      { noteName: "G" },
-      { noteName: "C" }]
+      { noteName: "G" }]
 
     return notes;
   }
@@ -28,7 +28,7 @@ export class AudioService {
   verifyNotesChosenAgainstAudioNotes(notes: Note[]): boolean {
     let notesAreSame: boolean = true;
     for (let i = 0; i < notes.length; i++) {
-      if (notes[i].noteName.toLowerCase() !== this.getAudioNotes()[i].noteName) {
+      if (notes[i].noteName.toLowerCase() !== this.getAudioNotes()[i].noteName.toLowerCase()) {
         notesAreSame = false;
         break;
 

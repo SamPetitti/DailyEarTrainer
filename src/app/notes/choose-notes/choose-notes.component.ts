@@ -15,6 +15,7 @@ export class ChooseNotesComponent implements OnInit {
   notes: Note[] = notesData;
   chosenNotes: Note[] = [];
   errorMessage: string = "";
+  correctNotesChosen: boolean = false;
   constructor(private submitNotesService: SubmitNotesService, private audioService: AudioService) { }
 
   ngOnInit(): void {
@@ -36,11 +37,15 @@ export class ChooseNotesComponent implements OnInit {
   submitNotes(): void {
     if (this.chosenNotes.length != 5) { return; }
     this.submitNotesService.addChosenNoteGroup(this.chosenNotes);
+    this.correctNotesChosen = this.audioService.verifyNotesChosenAgainstAudioNotes(this.chosenNotes);
+    if (this.correctNotesChosen) {
+      alert("you chose correct notes!")
+    }
     this.chosenNotes = [];
   }
 
   playMelody(): void {
-      this.audioService.playAudio();
+    this.audioService.playAudio();
   }
 
 
