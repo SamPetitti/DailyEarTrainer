@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AudioService } from 'src/app/services/audio.service';
 import { SubmitNotesService } from 'src/app/services/submit-notes.service';
 import { Note } from '../note';
 import { notesData } from '../notes-data';
@@ -14,7 +15,7 @@ export class ChooseNotesComponent implements OnInit {
   notes: Note[] = notesData;
   chosenNotes: Note[] = [];
   errorMessage: string = "";
-  constructor(private submitNotesService: SubmitNotesService) { }
+  constructor(private submitNotesService: SubmitNotesService, private audioService: AudioService) { }
 
   ngOnInit(): void {
 
@@ -39,9 +40,7 @@ export class ChooseNotesComponent implements OnInit {
   }
 
   playMelody(): void {
-    var audio = new Audio('../../assets/DailyEarTrainerSamples.mp3');
-    audio.load();
-    audio.play();
+      this.audioService.playAudio();
   }
 
 

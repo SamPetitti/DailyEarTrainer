@@ -17,9 +17,8 @@ export class NotesChosenComponent implements OnInit {
 
   chosenNotes: Notes[] = []
   getChosenNotes(): void {
-    console.log(this.chosenNotes)
+
     this.submitNotesService.getChosenNoteGroups().subscribe(chosenNotes => this.chosenNotes = chosenNotes);
-    console.log(this.chosenNotes);
   }
 
 }
