@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChooseNotesComponent } from './notes/choose-notes/choose-notes.component';
 import { NotesChosenComponent } from './notes/notes-chosen/notes-chosen.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChooseNotesComponent,
-    NotesChosenComponent
+    NotesChosenComponent,
+    HeaderComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
