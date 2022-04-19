@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChooseNotesComponent } from './notes/choose-notes/choose-notes.component';
-import { NotesChosenComponent } from './notes/notes-chosen/notes-chosen.component';
+import { ChooseNotesComponent } from './features/notes/choose-notes/choose-notes.component';
+import { NotesChosenComponent } from './features/notes/notes-chosen/notes-chosen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 
