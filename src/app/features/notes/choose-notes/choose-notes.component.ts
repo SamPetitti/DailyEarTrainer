@@ -1,9 +1,10 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AudioService } from 'src/app/services/audio.service';
 import { SubmitNotesService } from 'src/app/services/submit-notes.service';
-import { Note, Notes } from '../note';
+import { Note, NotesList } from '../note';
 import { notesData } from '../notes-data';
 import * as actions from '../state/actions/chooseNotes.actions';
 
@@ -13,10 +14,11 @@ import * as actions from '../state/actions/chooseNotes.actions';
   styleUrls: ['./choose-notes.component.css'],
 })
 export class ChooseNotesComponent implements OnInit {
-  notes$: Observable<Notes>;
-  chosenNotes: Note[] = [];
-  errorMessage: string = '';
-  correctNotesChosen: boolean = false;
+  chosenNotes$!: Observable<NotesList>;
+  allNotes!: NotesList;
+  //chosenNotes: Note[] = [];
+  // errorMessage: string = '';
+  //correctNotesChosen: boolean = false;
   constructor(
     private submitNotesService: SubmitNotesService,
     private audioService: AudioService,
@@ -24,7 +26,8 @@ export class ChooseNotesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.notes$ = this.store.select(chosenNotesData)
+    this.chosenNotes$ = this.store.select(chosenNotesData);
+    this.allNotes = notesData;
   }
 
   add(note: Note) {
@@ -32,20 +35,20 @@ export class ChooseNotesComponent implements OnInit {
   }
 
   removeNote(): void {
-    this.chosenNotes.pop();
+    //this.chosenNotes.pop();
   }
 
   submitNotes(): void {
-    if (this.chosenNotes.length != 5) {
-      return;
-    }
-    this.submitNotesService.addChosenNoteGroup(this.chosenNotes);
-    this.correctNotesChosen =
-      this.audioService.verifyNotesChosenAgainstAudioNotes(this.chosenNotes);
-    if (this.correctNotesChosen) {
-      alert('you chose correct notes!');
-    }
-    this.chosenNotes = [];
+    // if (this.chosenNotes.length != 5) {
+    //   return;
+    // }
+    // this.submitNotesService.addChosenNoteGroup(this.chosenNotes);
+    // this.correctNotesChosen =
+    //   this.audioService.verifyNotesChosenAgainstAudioNotes(this.chosenNotes);
+    // if (this.correctNotesChosen) {
+    //   alert('you chose correct notes!');
+    // }
+    // this.chosenNotes = [];
   }
 
   playMelody(): void {

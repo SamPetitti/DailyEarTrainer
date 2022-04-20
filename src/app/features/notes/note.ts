@@ -3,7 +3,7 @@ export interface Note {
   isCorrect: boolean;
 }
 
-export interface Notes {
-  note: Note[];
+export interface NotesList {
+  notes: Note[];
   total: number;
 }
