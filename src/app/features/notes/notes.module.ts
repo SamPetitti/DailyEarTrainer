@@ -25,21 +25,14 @@ const routes: Routes = [
         path: 'notes',
         component: ChooseNotesComponent,
       },
-      { path: '**',
-        redirectTo: 'notes'
-       }
+      { path: '**', redirectTo: 'notes' },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [
-    NotesComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule]
+  declarations: [NotesComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class NotesModule { }
+export class NotesModule {}

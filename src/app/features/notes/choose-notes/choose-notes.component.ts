@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AudioService } from 'src/app/services/audio.service';
 import { SubmitNotesService } from 'src/app/services/submit-notes.service';
-import { Note } from '../note';
+import { Note, Notes } from '../note';
 import { notesData } from '../notes-data';
+import * as actions from '../state/actions/chooseNotes.actions';
 
 @Component({
   selector: 'app-choose-notes',
   templateUrl: './choose-notes.component.html',
-  styleUrls: ['./choose-notes.component.css']
+  styleUrls: ['./choose-notes.component.css'],
 })
 export class ChooseNotesComponent implements OnInit {
-
-  notes: Note[] = notesData;
+  notes$: Observable<Notes>;
   chosenNotes: Note[] = [];
-  errorMessage: string = "";
+  errorMessage: string = '';
   correctNotesChosen: boolean = false;
-  constructor(private submitNotesService: SubmitNotesService, private audioService: AudioService) { }
+  constructor(
+    private submitNotesService: SubmitNotesService,
+    private audioService: AudioService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-
+    this.notes$ = this.store.select(chosenNotesData)
   }
 
-  add(note: Note): void {
-    if (this.chosenNotes.length < 5) {
-      this.chosenNotes.push(note);
-    } else {
-      this.errorMessage = "No more notes can be chosen"
-    }
+  add(note: Note) {
+    // this.store.dispatch(actions.noteChosen({ payload: { note } }));
   }
 
   removeNote(): void {
@@ -35,11 +36,14 @@ export class ChooseNotesComponent implements OnInit {
   }
 
   submitNotes(): void {
-    if (this.chosenNotes.length != 5) { return; }
+    if (this.chosenNotes.length != 5) {
+      return;
+    }
     this.submitNotesService.addChosenNoteGroup(this.chosenNotes);
-    this.correctNotesChosen = this.audioService.verifyNotesChosenAgainstAudioNotes(this.chosenNotes);
+    this.correctNotesChosen =
+      this.audioService.verifyNotesChosenAgainstAudioNotes(this.chosenNotes);
     if (this.correctNotesChosen) {
-      alert("you chose correct notes!")
+      alert('you chose correct notes!');
     }
     this.chosenNotes = [];
   }
@@ -47,6 +51,4 @@ export class ChooseNotesComponent implements OnInit {
   playMelody(): void {
     this.audioService.playAudio();
   }
-
-
 }

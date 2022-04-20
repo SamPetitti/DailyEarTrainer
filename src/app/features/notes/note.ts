@@ -1,6 +1,9 @@
 export interface Note {
-    noteName: string,
-    isCorrect: boolean
+  noteName: string;
+  isCorrect: boolean;
 }
 
-export interface Notes extends Array<Note> { }
+export interface Notes {
+  note: Note[];
+  total: number;
+}
