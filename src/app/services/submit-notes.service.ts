@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Note, Notes } from '../features/notes/note';
+import { Note, NotesList } from '../features/notes/note';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubmitNotesService {
+  // chosenNoteGroups: NotesList = [];
 
-  chosenNoteGroups: Notes[] = [];
+  // addChosenNoteGroup(notes: Note[]) {
+  //   this.chosenNoteGroups.push(notes);
+  // }
 
-  addChosenNoteGroup(notes: Note[]) {
-    this.chosenNoteGroups.push(notes);
-  }
+  // getChosenNoteGroups(): Observable<Notes[]> {
+  //   const chosenNoteGroups = of(this.chosenNoteGroups);
+  //   return chosenNoteGroups;
+  // }
 
-  getChosenNoteGroups(): Observable<Notes[]> {
-    const chosenNoteGroups = of(this.chosenNoteGroups);
-    return chosenNoteGroups;
-  }
-
-  clear() {
-    this.chosenNoteGroups = [];
-  }
+  // clear() {
+  //   this.chosenNoteGroups = [];
+  // }
 }

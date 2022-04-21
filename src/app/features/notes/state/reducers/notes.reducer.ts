@@ -5,22 +5,86 @@ import {
 } from '@ngrx/store';
 export const featureName = 'featureNotes';
 
-import { Note, NotesList } from '../../note';
+import { Note } from '../../note';
 import { createReducer, on } from '@ngrx/store';
-import * as actions from '../actions/chooseNotes.actions';
+import * as NotesActions from '../actions/notes.actions';
 
-export interface NotesFeatureState {
-  chosenNotes: NotesList;
+export interface NotesState {
+  chosenNotes: Note[];
+  submittedGuesses: Note[][];
+  total: number;
+  error: string;
 }
 
-const initialState: NotesFeatureState = {
-  chosenNotes: {
-    notes: [],
-    total: 0,
-  },
+const initialState: NotesState = {
+  chosenNotes: [],
+  submittedGuesses: [],
+  total: 0,
+  error: '',
 };
 
-const selectFeature = createFeatureSelector<NotesFeatureState>(featureName);
+const getNotesFeatureState = createFeatureSelector<NotesState>(featureName);
+
+export const chosenNotesData = createSelector(
+  getNotesFeatureState,
+  (n) => n.chosenNotes
+);
+
+// export const ActionReducerMap<NotesFeatureState> = {
+//   notes : reducer
+// }
+
+// export const reducers: ActionReducerMap<NotesState> = {
+//    chosenNotes: reducer,
+// };
+
+export const notesReducer = createReducer<NotesState>(
+  initialState,
+  on(NotesActions.addNoteChosen, (s, a): NotesState => {
+    if (s.chosenNotes.length < 5) {
+      const updatedNotesChosen = [...s.chosenNotes, a.payload.note];
+      return {
+        ...s,
+        chosenNotes: updatedNotesChosen,
+      };
+    } else {
+      return {
+        ...s,
+        error: 'Max 5 notes chosen',
+      };
+    }
+  }),
+  on(NotesActions.removeNoteChosen, (s, a): NotesState => {
+    if (s.chosenNotes.length > 0) {
+      const remainingNotes = [...s.chosenNotes].splice(
+        0,
+        s.chosenNotes.length - 1
+      );
+      console.log(remainingNotes);
+      return {
+        ...s,
+        chosenNotes: remainingNotes,
+      };
+    } else {
+      return {
+        ...s,
+      };
+    }
+  }),
+  on(NotesActions.SubmitNotes, (s, a): NotesState => {
+    if (s.chosenNotes.length === 5 && s.submittedGuesses.length < 6) {
+      return {
+        ...s,
+        submittedGuesses: [s.chosenNotes, ...s.submittedGuesses],
+        chosenNotes: [],
+      };
+    } else {
+      return { ...s };
+    }
+  })
+  // on(actions.countIncremented, (s) => ({ current: s.current + 1 })),
+  // on(actions.reset, (s) => ({ current: 0 }))
+);
 //**selector stuff */
 // export const featureName = 'featureTrafficLights';
 

@@ -7,6 +7,8 @@ import { ChooseNotesComponent } from './features/notes/choose-notes/choose-notes
 import { NotesChosenComponent } from './features/notes/notes-chosen/notes-chosen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,15 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ChooseNotesComponent,
     NotesChosenComponent,
     HeaderComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
