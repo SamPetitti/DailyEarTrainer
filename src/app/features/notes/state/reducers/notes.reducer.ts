@@ -76,15 +76,18 @@ export const notesReducer = createReducer<NotesState>(
     }
   }),
   on(NotesActions.SubmitNotes, (s, a): NotesState => {
-    if (s.chosenNotes.length === 5 && s.submittedGuesses.length < 6) {
+    if (s.chosenNotes.length < 5) {
+      return { ...s, error: 'must have all notes to submit guess' };
+    }
+    if (s.submittedGuesses.length === 6) {
+      return { ...s, error: 'already submitted all your guesses dude!' };
+    } else {
       return {
         ...s,
         error: '',
-        submittedGuesses: [s.chosenNotes, ...s.submittedGuesses],
+        submittedGuesses: [...s.submittedGuesses, [...s.chosenNotes]],
         chosenNotes: [],
       };
-    } else {
-      return { ...s, error: 'must have all notes to submit guess' };
     }
   })
   // on(actions.countIncremented, (s) => ({ current: s.current + 1 })),
