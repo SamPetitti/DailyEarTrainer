@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Note, NotesList } from '../note';
 import { SubmitNotesService } from '../../../services/submit-notes.service';
 import { AudioService } from 'src/app/services/audio.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { submittedNoteChoices } from '../state/reducers/notes.reducer';
 
 @Component({
   selector: 'app-notes-chosen',
@@ -9,16 +12,14 @@ import { AudioService } from 'src/app/services/audio.service';
   styleUrls: ['./notes-chosen.component.css'],
 })
 export class NotesChosenComponent implements OnInit {
-  constructor(private submitNotesService: SubmitNotesService) {}
+  constructor(private store: Store) {}
 
+  submittedNoteChoices$!: Observable<Note[][]>;
   ngOnInit(): void {
-    this.getChosenNotes();
+    this.submittedNoteChoices$ = this.store.select(submittedNoteChoices);
   }
 
-  chosenNotes! : NotesList;
-  correctNotesChosen: boolean = false;
 
-  getChosenNotes(): void {
-    // this.submitNotesService.getChosenNoteGroups().subscribe(chosenNotes => this.chosenNotes = chosenNotes);
-  }
+
+
 }

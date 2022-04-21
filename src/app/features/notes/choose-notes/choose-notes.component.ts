@@ -6,7 +6,7 @@ import { SubmitNotesService } from 'src/app/services/submit-notes.service';
 import { Note, NotesList } from '../note';
 import { notesData } from '../notes-data';
 import * as actions from '../state/actions/notes.actions';
-import { chosenNotesData } from '../state/reducers/notes.reducer';
+import { chosenNotesData, errorMessage } from '../state/reducers/notes.reducer';
 //import * from '../state/reducers'
 //import *
 
@@ -18,6 +18,7 @@ import { chosenNotesData } from '../state/reducers/notes.reducer';
 export class ChooseNotesComponent implements OnInit {
   chosenNotes$!: Observable<Note[]>;
   allNotes!: Note[];
+  errorMessage$!: Observable<string>;
   // errorMessage: string = '';
   //correctNotesChosen: boolean = false;
   constructor(
@@ -29,6 +30,7 @@ export class ChooseNotesComponent implements OnInit {
   ngOnInit(): void {
     this.chosenNotes$ = this.store.select(chosenNotesData);
     this.allNotes = notesData;
+    this.errorMessage$ = this.store.select(errorMessage);
   }
 
   add(note: Note) {

@@ -30,13 +30,15 @@ export const chosenNotesData = createSelector(
   (n) => n.chosenNotes
 );
 
-// export const ActionReducerMap<NotesFeatureState> = {
-//   notes : reducer
-// }
+export const submittedNoteChoices = createSelector(
+  getNotesFeatureState,
+  (n) => n.submittedGuesses
+);
 
-// export const reducers: ActionReducerMap<NotesState> = {
-//    chosenNotes: reducer,
-// };
+export const errorMessage = createSelector(
+  getNotesFeatureState,
+  (e) => e.error
+);
 
 export const notesReducer = createReducer<NotesState>(
   initialState,
@@ -45,6 +47,7 @@ export const notesReducer = createReducer<NotesState>(
       const updatedNotesChosen = [...s.chosenNotes, a.payload.note];
       return {
         ...s,
+        error: '',
         chosenNotes: updatedNotesChosen,
       };
     } else {
@@ -81,7 +84,7 @@ export const notesReducer = createReducer<NotesState>(
         chosenNotes: [],
       };
     } else {
-      return { ...s };
+      return { ...s, error: 'must have all notes to submit guess' };
     }
   })
   // on(actions.countIncremented, (s) => ({ current: s.current + 1 })),
