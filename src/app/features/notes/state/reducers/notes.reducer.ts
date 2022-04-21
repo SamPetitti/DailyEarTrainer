@@ -57,7 +57,7 @@ export const notesReducer = createReducer<NotesState>(
       };
     }
   }),
-  on(NotesActions.removeNoteChosen, (s, a): NotesState => {
+  on(NotesActions.removeNoteChosen, (s): NotesState => {
     if (s.chosenNotes.length > 0) {
       const remainingNotes = [...s.chosenNotes].splice(
         0,
@@ -85,7 +85,7 @@ export const notesReducer = createReducer<NotesState>(
       return {
         ...s,
         error: '',
-        submittedGuesses: [...s.submittedGuesses, [...s.chosenNotes]],
+        submittedGuesses: [...s.submittedGuesses, [...a.payload.notes]],
         chosenNotes: [],
       };
     }
