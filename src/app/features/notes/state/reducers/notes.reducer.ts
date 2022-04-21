@@ -63,6 +63,7 @@ export const notesReducer = createReducer<NotesState>(
       console.log(remainingNotes);
       return {
         ...s,
+        error: '',
         chosenNotes: remainingNotes,
       };
     } else {
@@ -75,6 +76,7 @@ export const notesReducer = createReducer<NotesState>(
     if (s.chosenNotes.length === 5 && s.submittedGuesses.length < 6) {
       return {
         ...s,
+        error: '',
         submittedGuesses: [s.chosenNotes, ...s.submittedGuesses],
         chosenNotes: [],
       };

@@ -17,7 +17,7 @@
     </div>
 </div>
 <div>
-    <button type="button" (click)="submitNotes()">Submit Notes</button>
+    <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit Notes</button>
 </div>
 <div>
     <button type="button" (click)="playMelody()">Play Melody</button>
