@@ -1,28 +1,31 @@
-<p>choose-notes works!</p>
 <app-notes-chosen></app-notes-chosen>
+
 <div class="container">
+  <div class="keyboard">
+    <ul class="set">
+      <a>
+        <li *ngFor="let note of allNotes" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)"></li>
+      </a>
+    </ul>
+  </div>
+  <div *ngIf="errorMessage$ | async" class=" alert alert-danger">
+    {{errorMessage$ | async}}
+  </div>
+  <div class="container">
     <div class="row align-items-start">
-        <div class="col" *ngFor="let note of allNotes">
-            <button type="button" (click)="add(note)">{{note.noteName}}</button>
-        </div>
+      <div class="col" *ngFor="let chosenNote of chosenNotes$ | async">
+        <div>{{chosenNote.noteName}} </div>
+      </div>
     </div>
-</div>
-<div *ngIf="errorMessage$ | async" class=" alert alert-danger">
-  {{errorMessage$ | async}}
-</div>
-<div class="container">
-    <div class="row align-items-start">
-        <div class="col" *ngFor="let chosenNote of chosenNotes$ | async">
-            <div>{{chosenNote.noteName}} </div>
-        </div>
-    </div>
-</div>
-<div>
-      <button type="button" (click)="removeNote()">Remove Note</button>
-</div>
-<div>
+  </div>
+  <div>
+    <button type="button" (click)="removeNote()">Remove Note</button>
+  </div>
+  <div>
     <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit Notes</button>
-</div>
-<div>
+  </div>
+  <div>
     <button type="button" (click)="playMelody()">Play Melody</button>
+  </div>
+
 </div>

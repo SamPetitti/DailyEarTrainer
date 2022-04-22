@@ -44,7 +44,12 @@ export const notesReducer = createReducer<NotesState>(
   initialState,
   on(NotesActions.addNoteChosen, (s, a): NotesState => {
     if (s.chosenNotes.length < 5) {
-      const updatedNotesChosen = [...s.chosenNotes, a.payload.note];
+      console.log(a.payload.keyboardNote.noteName);
+      const noteEntered: Note = {
+        noteName: a.payload.keyboardNote.noteName,
+        isCorrect: false,
+      };
+      const updatedNotesChosen = [...s.chosenNotes, noteEntered];
       return {
         ...s,
         error: '',

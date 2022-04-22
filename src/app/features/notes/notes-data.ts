@@ -1,16 +1,16 @@
-import { Note } from './note';
+import { KeyboardNote, KeyColor } from './note';
 
-export const notesData: Note[] = [
-  { noteName: 'A', isCorrect: false },
-  { noteName: 'Bb', isCorrect: false },
-  { noteName: 'B', isCorrect: false },
-  { noteName: 'C', isCorrect: false },
-  { noteName: 'Db', isCorrect: false },
-  { noteName: 'D', isCorrect: false },
-  { noteName: 'Eb', isCorrect: false },
-  { noteName: 'E', isCorrect: false },
-  { noteName: 'F', isCorrect: false },
-  { noteName: 'Gb', isCorrect: false },
-  { noteName: 'G', isCorrect: false },
-  { noteName: 'Ab', isCorrect: false },
+export const keyboardNotes: KeyboardNote[] = [
+  { noteName: 'c', keyColor: 'white' },
+  { noteName: 'cs', keyColor: 'black' },
+  { noteName: 'd', keyColor: 'white' },
+  { noteName: 'ds', keyColor: 'black' },
+  { noteName: 'e', keyColor: 'white' },
+  { noteName: 'f', keyColor: 'white' },
+  { noteName: 'fs', keyColor: 'black' },
+  { noteName: 'g', keyColor: 'white' },
+  { noteName: 'gs', keyColor: 'black' },
+  { noteName: 'a', keyColor: 'white' },
+  { noteName: 'as', keyColor: 'black' },
+  { noteName: 'b', keyColor: 'white' },
 ];

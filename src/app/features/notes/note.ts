@@ -7,3 +7,10 @@ export interface NotesList {
   notes: Note[];
   total: number;
 }
+
+export interface KeyboardNote {
+  noteName: string;
+  keyColor: KeyColor;
+}
+
+export type KeyColor = 'white' | 'black';
