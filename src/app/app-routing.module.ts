@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, PreloadingStrategy, RouterModule, Routes } from '@angular/router';
+import {
+  PreloadAllModules,
+  PreloadingStrategy,
+  RouterModule,
+  Routes,
+} from '@angular/router';
 
-const routes: Routes = [{
-  path: 'notes',
-  loadChildren: () =>
-    import('./features/notes/notes.module').then((m) => m.NotesModule)
-
-}];
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./features/notes/notes.module').then((m) => m.NotesModule),
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
