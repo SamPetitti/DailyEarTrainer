@@ -34,7 +34,6 @@ export class ChooseNotesComponent implements OnInit {
   }
 
   add(keyboardNote: KeyboardNote) {
-    console.log(keyboardNote.noteName);
     this.store.dispatch(actions.addNoteChosen({ payload: { keyboardNote } }));
   }
 

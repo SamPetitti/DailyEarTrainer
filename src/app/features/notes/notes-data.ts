@@ -1,4 +1,4 @@
-import { KeyboardNote, KeyColor } from './note';
+import { KeyboardNote } from './note';
 
 export const keyboardNotes: KeyboardNote[] = [
   { noteName: 'c', keyColor: 'white' },

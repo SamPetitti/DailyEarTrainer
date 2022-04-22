@@ -1,6 +1,8 @@
 <app-notes-chosen></app-notes-chosen>
-
 <div class="container">
+  <div *ngIf="errorMessage$ | async" class="alert alert-danger">
+    {{errorMessage$ | async}}
+  </div>
   <div class="keyboard">
     <ul class="set">
       <a>
@@ -8,9 +10,7 @@
       </a>
     </ul>
   </div>
-  <div *ngIf="errorMessage$ | async" class=" alert alert-danger">
-    {{errorMessage$ | async}}
-  </div>
+
   <div class="container">
     <div class="row align-items-start">
       <div class="col" *ngFor="let chosenNote of chosenNotes$ | async">
@@ -29,3 +29,4 @@
   </div>
 
 </div>
+
