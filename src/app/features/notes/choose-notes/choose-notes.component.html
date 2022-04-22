@@ -19,13 +19,13 @@
     </div>
   </div>
   <div>
-    <button type="button" (click)="removeNote()">Remove Note</button>
+    <button type="button" (click)="removeNote()" altText="submit notes"><img src="../../../../assets/backspace.svg/"></button>
   </div>
   <div>
-    <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit Notes</button>
+    <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)" >Submit Notes</button>
   </div>
   <div>
-    <button type="button" (click)="playMelody()">Play Melody</button>
+    <button type="button" (click)="playMelody()" altText="play melody"><img src="../../../../assets/ear.svg"/></button>
   </div>
 
 </div>

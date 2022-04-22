@@ -8,6 +8,7 @@ export const featureName = 'featureNotes';
 import { Note } from '../../note';
 import { createReducer, on } from '@ngrx/store';
 import * as NotesActions from '../actions/notes.actions';
+import { Factory } from 'vexflow';
 
 export interface NotesState {
   chosenNotes: Note[];
@@ -82,11 +83,34 @@ export const notesReducer = createReducer<NotesState>(
   }),
   on(NotesActions.SubmitNotes, (s, a): NotesState => {
     if (s.chosenNotes.length < 5) {
+
       return { ...s, error: 'must have all notes to submit guess' };
     }
     if (s.submittedGuesses.length === 6) {
       return { ...s, error: 'already submitted all your guesses dude!' };
     } else {
+      const vf = new Factory({
+        renderer: { elementId: 'output', width: 500, height: 200 },
+      });
+
+      const score = vf.EasyScore();
+      const system = vf.System();
+      //var notes = this.submittedNoteChoices$.pipe;
+      const notesGroups: string[][] = [
+        ['C#5/q, B4, A4, G#4'],
+        ['C#5/q, E5, A4, G#4'],
+      ];
+      notesGroups.forEach((element) => {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(element.toString(), { stem: 'up' })),
+            ],
+          })
+          .addClef('treble')
+          .addTimeSignature('4/4');
+      });
+      vf.draw();
       return {
         ...s,
         error: '',

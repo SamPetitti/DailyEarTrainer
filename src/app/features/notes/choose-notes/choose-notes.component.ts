@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { AudioService } from 'src/app/services/audio.service';
 import { SubmitNotesService } from 'src/app/services/submit-notes.service';
 import { KeyboardNote, Note, NotesList } from '../note';
-import { keyboardNotes } from '../notes-data';
+import { keyboardNotesSharp, keyboardNotesFlat } from '../notes-data';
 import * as actions from '../state/actions/notes.actions';
 import { chosenNotesData, errorMessage } from '../state/reducers/notes.reducer';
 //import * from '../state/reducers'
@@ -19,8 +19,7 @@ export class ChooseNotesComponent implements OnInit {
   chosenNotes$!: Observable<Note[]>;
   allNotes!: KeyboardNote[];
   errorMessage$!: Observable<string>;
-  // errorMessage: string = '';
-  //correctNotesChosen: boolean = false;
+
   constructor(
     private submitNotesService: SubmitNotesService,
     private audioService: AudioService,
@@ -29,7 +28,7 @@ export class ChooseNotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.chosenNotes$ = this.store.select(chosenNotesData);
-    this.allNotes = keyboardNotes;
+    this.allNotes = keyboardNotesSharp;
     this.errorMessage$ = this.store.select(errorMessage);
   }
 
