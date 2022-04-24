@@ -1,6 +1,6 @@
 <app-notes-chosen></app-notes-chosen>
 <div class="container">
-
+<!-- to do - create keyboard component -->
   <div *ngIf="errorMessage$ | async" class="alert alert-danger">
     {{errorMessage$ | async}}
   </div>
@@ -18,7 +18,8 @@
       <div>{{chosenNote.noteName}} </div>
     </div>
   </div>
-</div>
+ </div>
+<!-- to do-create options component -->
 <div>
   <button type="button" (click)="removeNote()" altText="submit notes"><img
       src="../../../../assets/backspace.svg/"></button>
