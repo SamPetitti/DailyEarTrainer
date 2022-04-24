@@ -11,6 +11,7 @@ export interface NotesList {
 export interface KeyboardNote {
   noteName: string;
   keyColor: KeyColor;
+  octave: number;
 }
 
 export type KeyColor = 'white' | 'black';
