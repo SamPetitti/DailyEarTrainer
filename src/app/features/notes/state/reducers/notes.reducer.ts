@@ -15,6 +15,7 @@ import {
   Renderer,
   Accidental,
 } from 'vexflow';
+import { AUTO_STYLE } from '@angular/animations';
 
 export interface NotesState {
   chosenNotes: Note[];
@@ -128,9 +129,8 @@ const drawNotes = (element: string, notes: Note[]): void => {
     console.log(notes.map((n) => n.noteName));
     const renderer = new Renderer(element, Renderer.Backends.SVG);
 
-
     // Configure the rendering context.
-    renderer.resize(720, 130);
+    renderer.resize(300, 100);
     const context = renderer.getContext();
 
     // Measure 1
