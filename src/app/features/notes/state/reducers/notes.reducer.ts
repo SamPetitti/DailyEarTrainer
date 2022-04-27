@@ -128,8 +128,6 @@ const drawNotes = (element: string, notes: Note[]): void => {
     console.log(notes.map((n) => n.noteName));
     const renderer = new Renderer(element, Renderer.Backends.SVG);
 
-    // Configure the rendering context.
-    renderer.resize(720, 130);
 
     // Configure the rendering context.
     renderer.resize(720, 130);
