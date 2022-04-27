@@ -54,10 +54,9 @@ export const notesReducer = createReducer<NotesState>(
       console.log(a.payload.keyboardNote.noteName);
 
       const noteEntered: Note = {
-        noteName: `${a.payload.keyboardNote.noteName}/${
-          a.payload.keyboardNote.octave
-        }`,
+        noteName: `${a.payload.keyboardNote.noteName}/${a.payload.keyboardNote.octave}`,
         isCorrect: false,
+        accidental: a.payload.keyboardNote.accidental,
       };
       const updatedNotesChosen = [...s.chosenNotes, noteEntered];
       removeGuesses('guesses');
@@ -142,20 +141,20 @@ const drawNotes = (element: string, notes: Note[]): void => {
 
     console.log(notes.map((n) => n.noteName));
     const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
-      if (n.noteName.includes('#')) {
+      if (n.accidental === '#') {
         return new StaveNote({
           keys: [`${n.noteName}`],
           duration: 'q',
         }).addModifier(new Accidental('#'));
       }
-       if (n.noteName.includes('b')) {
-         return new StaveNote({
-           keys: [`${n.noteName}`],
-           duration: 'q',
-         }).addModifier(new Accidental('b'));
-       } else {
-         return new StaveNote({ keys: [`${n.noteName}`], duration: 'q' });
-       }
+      if (n.accidental === 'b') {
+        return new StaveNote({
+          keys: [`${n.noteName}`],
+          duration: 'q',
+        }).addModifier(new Accidental('b'));
+      } else {
+        return new StaveNote({ keys: [`${n.noteName}`], duration: 'q' });
+      }
     });
 
     // Helper function to justify and draw a 4/4 voice

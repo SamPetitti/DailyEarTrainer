@@ -7,8 +7,6 @@ import { KeyboardNote, Note, NotesList } from '../note';
 import { keyboardNotesSharp, keyboardNotesFlat } from '../notes-data';
 import * as actions from '../state/actions/notes.actions';
 import { chosenNotesData, errorMessage } from '../state/reducers/notes.reducer';
-//import * from '../state/reducers'
-//import *
 
 @Component({
   selector: 'app-choose-notes',

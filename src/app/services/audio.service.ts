@@ -8,11 +8,11 @@ import { Note } from '../features/notes/note';
 export class AudioService {
   getAudioNotes(): Note[] {
     const notes: Note[] = [
-      { noteName: 'C', isCorrect: false },
-      { noteName: 'D', isCorrect: false },
-      { noteName: 'E', isCorrect: false },
-      { noteName: 'F', isCorrect: false },
-      { noteName: 'G', isCorrect: false },
+      { noteName: 'C', isCorrect: false, accidental:null },
+      { noteName: 'D', isCorrect: false , accidental:null},
+      { noteName: 'E', isCorrect: false, accidental:null },
+      { noteName: 'F', isCorrect: false , accidental:null},
+      { noteName: 'G', isCorrect: false , accidental:null},
     ];
 
     return notes;

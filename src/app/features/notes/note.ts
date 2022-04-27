@@ -1,6 +1,7 @@
 export interface Note {
   noteName: string;
   isCorrect: boolean;
+  accidental: Accidental;
 }
 
 export interface NotesList {
@@ -12,7 +13,8 @@ export interface KeyboardNote {
   noteName: string;
   keyColor: KeyColor;
   octave: number;
-  
+  accidental: Accidental;
+
 }
 
 export type KeyColor = 'white' | 'black';
