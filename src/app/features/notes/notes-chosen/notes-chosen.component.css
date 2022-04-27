@@ -1,13 +1,12 @@
-.notes-output {
+.notes-output-container{
 
-    /* //margin: 10% 50% 10% 50%; */
+    margin: 10% 50% 10% 50%; 
 
     /* Setup */
     position: relative;
 }
 
-#guesses {
-/* Center vertically and horizontally */
+.notes-output {
 position: relative;
 top: 50%;
 left: 50%;
