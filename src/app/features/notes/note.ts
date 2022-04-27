@@ -12,6 +12,9 @@ export interface KeyboardNote {
   noteName: string;
   keyColor: KeyColor;
   octave: number;
+  
 }
 
 export type KeyColor = 'white' | 'black';
+
+export type Accidental = '#' | 'b' | null;

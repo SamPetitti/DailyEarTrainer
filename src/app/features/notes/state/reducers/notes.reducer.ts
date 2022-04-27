@@ -4,12 +4,17 @@ import {
   createSelector,
 } from '@ngrx/store';
 export const featureName = 'featureNotes';
-
 import { Note } from '../../note';
 import { createReducer, on } from '@ngrx/store';
 import * as NotesActions from '../actions/notes.actions';
-import { Barline, BarlineType, Factory } from 'vexflow';
-import { Stave, StaveNote, Beam, Formatter, Renderer } from 'vexflow';
+import {
+  Stave,
+  StaveNote,
+  Beam,
+  Formatter,
+  Renderer,
+  Accidental,
+} from 'vexflow';
 
 export interface NotesState {
   chosenNotes: Note[];
@@ -49,12 +54,14 @@ export const notesReducer = createReducer<NotesState>(
       console.log(a.payload.keyboardNote.noteName);
 
       const noteEntered: Note = {
-        noteName: a.payload.keyboardNote.noteName,
+        noteName: `${a.payload.keyboardNote.noteName}/${
+          a.payload.keyboardNote.octave
+        }`,
         isCorrect: false,
       };
       const updatedNotesChosen = [...s.chosenNotes, noteEntered];
-       removeGuesses('guesses');
-       drawNotes('guesses', updatedNotesChosen);
+      removeGuesses('guesses');
+      drawNotes('guesses', updatedNotesChosen);
       return {
         ...s,
         error: '',
@@ -95,33 +102,9 @@ export const notesReducer = createReducer<NotesState>(
     if (s.submittedGuesses.length === 6) {
       return { ...s, error: 'already submitted all your guesses dude!' };
     } else {
-
       removeGuesses('guesses');
       drawNotes('output', s.chosenNotes);
 
-      // Measure 2 - second measure is placed adjacent to first measure.
-      // const staveMeasure2 = new Stave(
-      //   staveMeasure1.getWidth() + staveMeasure1.getX(),
-      //   0,
-      //   400
-      // );
-
-      // const notesMeasure2_part1: StaveNote[] = a.payload.notes
-      //   .slice(4, 5)
-      //   .map(
-      //     (n) => new StaveNote({ keys: [n.noteName + '/4'], duration: 'q' })
-      //   );
-
-      // Create the beams for 8th notes in second measure.
-      //const beam1 = new Beam(notesMeasure2_part1);
-
-      //  const notesMeasure2 = notesMeasure2_part1; //.concat(notesMeasure2_part2);
-
-      // staveMeasure2.setContext(context).draw();
-      //Formatter.FormatAndDraw(context, staveMeasure2, notesMeasure2);
-
-      // Render beams
-      // beam1.setContext(context).draw();
       return {
         ...s,
         error: '',
@@ -132,42 +115,6 @@ export const notesReducer = createReducer<NotesState>(
   })
 );
 
-//**EASY SCORE example */
-//   const vf = new Factory({
-//     renderer: { elementId: 'output', width: 500, height: 200 },
-//   });
-
-//   const score = vf.EasyScore();
-//   const system = vf.System();
-//   //var notes = this.submittedNoteChoices$.pipe;
-//   const notesGroups: string[][] = [
-//     ['C#5/q, B4, A4, G#4'],
-//     ['C5/q,C5,C5,C5'],
-//   ];
-//   notesGroups.forEach((notes) => {
-//     system
-//       .addStave({
-//         voices: [
-//           score.voice(score.notes(notes.toString(), { stem: 'down' })),
-//         ],
-//       },
-//     )
-//       .addClef('treble')
-//       .addTimeSignature('4/4');
-//   });
-//   system.addStave({
-//         voices: [
-//           score.voice(score.notes(['C5/q,C5,C5,C5'].toString(), { stem: 'down' })),
-//         ]});
-//   vf.draw();
-//   return {
-//     ...s,
-//     error: '',
-//     submittedGuesses: [...s.submittedGuesses, [...a.payload.notes]],
-//     chosenNotes: [],
-//   };
-// }
-
 //helpers
 const removeGuesses = (elementName: string): void => {
   const element = document.getElementById(elementName);
@@ -177,26 +124,41 @@ const removeGuesses = (elementName: string): void => {
   }
 };
 
-const drawNotes = (element: string, notes: Note[]) : void => {
-  if(notes.length > 0){
-   const renderer = new Renderer(element, Renderer.Backends.SVG);
+const drawNotes = (element: string, notes: Note[]): void => {
+  if (notes.length > 0) {
+    console.log(notes.map((n) => n.noteName));
+    const renderer = new Renderer(element, Renderer.Backends.SVG);
 
-   // Configure the rendering context.
-   renderer.resize(720, 130);
+    // Configure the rendering context.
+    renderer.resize(720, 130);
 
-   // Configure the rendering context.
-   renderer.resize(720, 130);
-   const context = renderer.getContext();
-   //context.clear();
-   // Measure 1
-   const staveMeasure1 = new Stave(10, 0, 300);
-   staveMeasure1.addClef('treble').setContext(context).draw();
+    // Configure the rendering context.
+    renderer.resize(720, 130);
+    const context = renderer.getContext();
 
-   const notesMeasure1: StaveNote[] = notes
-     .slice(0, 5)
-     .map((n) => new StaveNote({ keys: [`${n.noteName}/4`], duration: 'q' }));
+    // Measure 1
+    const staveMeasure1 = new Stave(10, 0, 300);
+    staveMeasure1.addClef('treble').setContext(context).draw();
 
-   // Helper function to justify and draw a 4/4 voice
-   Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
+    console.log(notes.map((n) => n.noteName));
+    const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
+      if (n.noteName.includes('#')) {
+        return new StaveNote({
+          keys: [`${n.noteName}`],
+          duration: 'q',
+        }).addModifier(new Accidental('#'));
+      }
+       if (n.noteName.includes('b')) {
+         return new StaveNote({
+           keys: [`${n.noteName}`],
+           duration: 'q',
+         }).addModifier(new Accidental('b'));
+       } else {
+         return new StaveNote({ keys: [`${n.noteName}`], duration: 'q' });
+       }
+    });
+
+    // Helper function to justify and draw a 4/4 voice
+    Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
   }
-}
+};
