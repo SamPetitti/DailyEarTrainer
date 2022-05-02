@@ -1,7 +1,7 @@
 .notes-output-container{
 
 
-margin: 0% 62% 5% 35%;
+
     /* Setup */
     /* display: flex;
     justify-content: center;
@@ -9,6 +9,7 @@ margin: 0% 62% 5% 35%;
 }
 
 .notes-output {
+  margin: 0% 38% 0% 38%;
   display: inline-block;
 
 }
