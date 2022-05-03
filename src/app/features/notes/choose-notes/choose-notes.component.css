@@ -89,6 +89,7 @@ ul li:last-child {
 }
 
 .key {
+  cursor: pointer;
   height: calc(var(--width) * 4);
   width: var(--width);
 }
@@ -108,4 +109,7 @@ ul li:last-child {
   z-index: 2;
 }
 
+.black:active {
+  background: linear-gradient(to right, #444 0%, #222 100%)
+}
 

@@ -30,11 +30,11 @@ header {
 }
 
 .settings-icon {
-    margin-right: .1em;
+    margin-left: 1em;
 }
 
 .how-to {
-  margin: 0 1em 0 1em;
+  margin: 0 1em 0 .5em;
 }
 
 .links {
@@ -43,5 +43,6 @@ header {
 
 
 img {
-  font-size: 1.2em;
+  height: 1.8em;
+  width: 1.8em;
 }
