@@ -1,0 +1,20 @@
+ /* .notes-options{
+  display: flex;
+  justify-content: center;
+} */
+/* .notes-options {
+   width: 16em;
+} */
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  margin: 0 38% 0 38%;
+}
+
+button {
+   border : 1px solid white;
+   font-size: 1.2em;
+   font-family: monoton;
+  }
+
