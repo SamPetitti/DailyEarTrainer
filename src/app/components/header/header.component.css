@@ -1,18 +1,47 @@
 header {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-
+  border-bottom: solid 1px;
+  flex-direction: row;
 }
 
 
 .title {
   font-family: 'Monoton';
-  font-size: 3em;
+  font-size: 50px;
+}
 
+.left-links {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    width: 70px;
+    justify-content: flex-start;
+}
+
+.right-links {
+    display: flex;
+    width: 70px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .settings-icon {
-  margin: 1em 1em 1em 1em;
-  size: 2em
+    margin-right: .1em;
+}
+
+.how-to {
+  margin: 0 1em 0 1em;
+}
+
+.links {
+  margin-left: 1em;
+}
+
+
+img {
+  font-size: 1.2em;
 }
