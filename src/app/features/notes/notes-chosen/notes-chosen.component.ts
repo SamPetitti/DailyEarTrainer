@@ -18,6 +18,5 @@ export class NotesChosenComponent implements OnInit {
   submittedNoteChoices$!: Observable<Note[][]>;
   ngOnInit(): void {
     this.submittedNoteChoices$ = this.store.select(submittedNoteChoices);
-    //this.drawNotes2();
   }
 }

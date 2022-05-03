@@ -13,8 +13,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     AppComponent,
-    ChooseNotesComponent,
-    NotesChosenComponent,
     HeaderComponent,
     NavigationComponent,
   ],

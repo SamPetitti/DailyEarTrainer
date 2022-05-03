@@ -6,6 +6,7 @@ import { ChooseNotesComponent } from './choose-notes/choose-notes.component';
 import { NotesChosenComponent } from './notes-chosen/notes-chosen.component';
 import { StoreModule } from '@ngrx/store';
 import { featureName, notesReducer } from './state/reducers/notes.reducer';
+import { NotesOptionsComponent } from './notes-options/notes-options.component';
 
 // const routes: Routes = [
 //   {
@@ -33,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [NotesComponent],
+  declarations: [NotesComponent, NotesChosenComponent, NotesOptionsComponent, ChooseNotesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

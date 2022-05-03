@@ -34,18 +34,4 @@ export class ChooseNotesComponent implements OnInit {
     this.store.dispatch(actions.addNoteChosen({ payload: { keyboardNote } }));
   }
 
-  removeNote(): void {
-    this.store.dispatch(actions.removeNoteChosen());
-  }
-
-  //todo: create effect
-  submitNotes(notesSubmitted: Note[]): void {
-    this.store.dispatch(
-      actions.SubmitNotes({ payload: { notes: notesSubmitted } })
-    );
-  }
-
-  playMelody(): void {
-    this.audioService.playAudio();
-  }
 }

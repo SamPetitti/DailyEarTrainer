@@ -1,0 +1,12 @@
+<p>options works!</p>
+<!-- to do-create options component -->
+<div>
+  <button type="button" (click)="removeNote()" altText="submit notes"><img
+      src="../../../../assets/backspace.svg/"></button>
+</div>
+<div>
+  <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit Notes</button>
+</div>
+<div>
+  <button type="button" (click)="playMelody()" altText="play melody"><img src="../../../../assets/ear.svg" /></button>
+</div>

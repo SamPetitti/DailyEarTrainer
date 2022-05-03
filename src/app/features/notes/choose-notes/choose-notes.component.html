@@ -1,28 +1,13 @@
 <app-notes-chosen></app-notes-chosen>
 
 <!-- to do - create keyboard component -->
-  <div *ngIf="errorMessage$ | async" class="alert alert-danger">
-    {{errorMessage$ | async}}
+<div *ngIf="errorMessage$ | async" class="alert alert-danger">
+  {{errorMessage$ | async}}
+</div>
+<div class="keyboard">
+  <div class="notes">
+    <div *ngFor="let note of allNotes" class="key" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)">
+    </div>
   </div>
-  <div class="keyboard">
-
-<div class="notes">
-
-        <div *ngFor="let note of allNotes" class="key" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)" ></div>
-
-      </div>
-
-  </div>
-
-
-<!-- to do-create options component -->
-<div>
-  <button type="button" (click)="removeNote()" altText="submit notes"><img
-      src="../../../../assets/backspace.svg/"></button>
 </div>
-<div>
-  <button type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit Notes</button>
-</div>
-<div>
-  <button type="button" (click)="playMelody()" altText="play melody"><img src="../../../../assets/ear.svg" /></button>
-</div>
+<app-notes-options></app-notes-options>
