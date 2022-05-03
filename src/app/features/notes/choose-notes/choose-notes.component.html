@@ -1,17 +1,17 @@
 <app-notes-chosen></app-notes-chosen>
-<div class="container">
+
 <!-- to do - create keyboard component -->
   <div *ngIf="errorMessage$ | async" class="alert alert-danger">
     {{errorMessage$ | async}}
   </div>
   <div class="keyboard">
-    <ul class="set">
-      <a>
-        <li *ngFor="let note of allNotes" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)"></li>
-      </a>
-    </ul>
-  </div>
+
+<div class="notes">
+        <div *ngFor="let note of allNotes" class="key" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)" ></div>
 </div>
+
+  </div>
+
 
 <!-- to do-create options component -->
 <div>
