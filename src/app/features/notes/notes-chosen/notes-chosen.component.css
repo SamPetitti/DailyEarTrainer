@@ -1,15 +1,7 @@
-.notes-output-container{
 
 
-
-    /* Setup */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
-.notes-output {
-  margin: 0% 38% 0% 38%;
-  display: inline-block;
-
+.notes-output{
+  display:flex;
+  flex-flow: column wrap;
+  align-items: center;
 }

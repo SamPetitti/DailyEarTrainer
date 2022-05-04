@@ -96,14 +96,16 @@ export const notesReducer = createReducer<NotesState>(
     }
   }),
   on(NotesActions.SubmitNotes, (s, a): NotesState => {
-    if (s.chosenNotes.length < 5) {
+    if (a.payload.notes.length < 5) {
       return { ...s, error: 'must have all notes to submit guess' };
     }
-    if (s.submittedGuesses.length === 6) {
+    if (a.payload.notes.length === 6) {
       return { ...s, error: 'already submitted all your guesses dude!' };
     } else {
       removeGuesses('guesses');
-      drawNotes('output', s.chosenNotes);
+      //figure out if notes are correct
+      //s.chosenNotes = a.payload.notes.map(n => )
+      drawNotes('output', a.payload.notes);
 
       return {
         ...s,
@@ -133,6 +135,7 @@ const drawNotes = (element: string, notes: Note[]): void => {
     renderer.resize(300, 100);
     const context = renderer.getContext();
 
+
     // Measure 1
     const staveMeasure1 = new Stave(10, 0, 300);
     staveMeasure1.addClef('treble').setContext(context).draw();
@@ -143,7 +146,7 @@ const drawNotes = (element: string, notes: Note[]): void => {
         return new StaveNote({
           keys: [`${n.noteName}`],
           duration: 'q',
-        }).addModifier(new Accidental('#'));
+        }).addModifier(new Accidental('#')).setStyle({fillStyle: "red"});
       }
       if (n.accidental === 'b') {
         return new StaveNote({
