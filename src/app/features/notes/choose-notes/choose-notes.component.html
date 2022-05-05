@@ -4,7 +4,6 @@
 <div *ngIf="errorMessage$ | async" class="alert alert-danger">
   {{errorMessage$ | async}}
 </div>
-<p>blah blah blah</p>
 <div class="keyboard">
   <div class="notes">
     <div *ngFor="let note of allNotes" class="key" [ngClass]="[note.keyColor, note.noteName]" (click)="add(note)">
