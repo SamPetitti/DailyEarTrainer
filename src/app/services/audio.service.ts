@@ -8,18 +8,18 @@ import { Note } from '../features/notes/note';
 export class AudioService {
   getAudioNotes(): Note[] {
     const notes: Note[] = [
-      { noteName: 'C', isCorrect: false, accidental:null },
-      { noteName: 'D', isCorrect: false , accidental:null},
-      { noteName: 'E', isCorrect: false, accidental:null },
-      { noteName: 'F', isCorrect: false , accidental:null},
-      { noteName: 'G', isCorrect: false , accidental:null},
+      { noteName: 'C', isCorrect: false, accidental: null },
+      { noteName: 'D', isCorrect: false, accidental: null },
+      { noteName: 'E', isCorrect: false, accidental: null },
+      { noteName: 'F', isCorrect: false, accidental: null },
+      { noteName: 'G', isCorrect: false, accidental: null },
     ];
 
     return notes;
   }
 
   playAudio(): void {
-    const audio = new Audio('../../assets/DailyEarTrainerSamples.mp3');
+    const audio = new Audio('assets/DailyEarTrainerSamples.mp3');
     audio.load();
     audio.play();
   }
