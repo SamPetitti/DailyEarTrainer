@@ -12,9 +12,10 @@
 <div class="notes-options">
 <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-secondary" (click)="playMelody()" altText="play melody"><img
-        src="/assets/ear.svg" /></button>
+        src="assets/ear.svg" /></button>
   <button type="button" class="btn btn-secondary" type="button" *ngIf="chosenNotes$ | async; let notes" (click)="submitNotes(notes)">Submit</button>
 <button type="button" class="btn btn-secondary" (click)="removeNote()" altText="back"><img
-    src="/assets/backspace.svg/"></button>
+    src="assets/backspace.svg/"></button>
 </div>
 </div>
+ 
