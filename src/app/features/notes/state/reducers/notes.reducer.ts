@@ -56,7 +56,7 @@ export const notesReducer = createReducer<NotesState>(
 
       const noteEntered: Note = {
         noteName: `${a.payload.keyboardNote.noteName}/${a.payload.keyboardNote.octave}`,
-        isCorrect: false,
+        noteStatus: 'incorrect',
         accidental: a.payload.keyboardNote.accidental,
       };
       const updatedNotesChosen = [...s.chosenNotes, noteEntered];
