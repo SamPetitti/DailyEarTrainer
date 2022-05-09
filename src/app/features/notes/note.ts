@@ -1,19 +1,22 @@
-export interface Note {
-  noteName: string;
-  noteStatus: NoteStatus;
-  accidental: Accidental;
-}
+// export interface Note {
+//   noteName: string;
+//   noteStatus: NoteStatus;
+//   accidental: Accidental;
+// }
 
 export interface NotesList {
   notes: Note[];
   total: number;
 }
 
-export interface KeyboardNote {
+export interface Note {
   noteName: string;
   keyColor: KeyColor;
   octave: number;
   accidental: Accidental;
+  noteStatus: NoteStatus;
+  altNote: string;
+  altAccidental: Accidental
 }
 
 export type KeyColor = 'white' | 'black';

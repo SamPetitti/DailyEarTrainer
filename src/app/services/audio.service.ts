@@ -7,15 +7,17 @@ import { Note } from '../features/notes/note';
 })
 export class AudioService {
   getAudioNotes(): Note[] {
-    const notes: Note[] = [
-      { noteName: 'C', noteStatus: 'incorrect', accidental: null },
-      { noteName: 'D', noteStatus: 'incorrect', accidental: null },
-      { noteName: 'E', noteStatus: 'incorrect', accidental: null },
-      { noteName: 'F', noteStatus: 'incorrect', accidental: null },
-      { noteName: 'G', noteStatus: 'incorrect', accidental: null },
-    ];
-
-    return notes;
+    return [
+      {
+        noteName: 'c',
+        octave: 4,
+        keyColor: 'white',
+        accidental: null,
+        noteStatus: 'incorrect',
+        altNote: 'c',
+        altAccidental: null,
+      },
+    ] as Note[];
   }
 
   playAudio(): void {

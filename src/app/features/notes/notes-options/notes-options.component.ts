@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AudioService } from 'src/app/services/audio.service';
-import { KeyboardNote, Note } from '../note';
+import { Note } from '../note';
 import * as actions from '../state/actions/notes.actions';
 import { chosenNotesData, errorMessage } from '../state/reducers/notes.reducer';
 
-import { keyboardNotesSharp, keyboardNotesFlat } from '../notes-data';
+import { keyboardNotes } from '../notes-data';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-notes-options',
@@ -14,14 +14,14 @@ import { Observable } from 'rxjs';
 })
 export class NotesOptionsComponent implements OnInit {
   chosenNotes$!: Observable<Note[]>;
-  allNotes!: KeyboardNote[];
+  allNotes!: Note[];
   errorMessage$!: Observable<string>;
 
   constructor(private store: Store, private audioService: AudioService) {}
 
   ngOnInit(): void {
     this.chosenNotes$ = this.store.select(chosenNotesData);
-    this.allNotes = keyboardNotesSharp;
+    this.allNotes = keyboardNotes;
     this.errorMessage$ = this.store.select(errorMessage);
   }
 

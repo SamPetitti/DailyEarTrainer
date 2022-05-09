@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { KeyboardNote, Note } from '../../note';
+import { Note } from '../../note';
 
 export const addNoteChosen = createAction(
   '[chooseNotes] add note',
-  props<{ payload: { keyboardNote: KeyboardNote } }>()
+  props<{ payload: { noteToAdd: Note } }>()
 );
 
 export const removeNoteChosen = createAction('[chooseNotes] remove note');

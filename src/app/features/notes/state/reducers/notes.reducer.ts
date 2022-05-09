@@ -51,15 +51,16 @@ export const errorMessage = createSelector(
 export const notesReducer = createReducer<NotesState>(
   initialState,
   on(NotesActions.addNoteChosen, (s, a): NotesState => {
+    console.log(...s.chosenNotes);
     if (s.chosenNotes.length < 5) {
-      console.log(a.payload.keyboardNote.noteName);
+      console.log(a.payload.noteToAdd.noteName);
 
-      const noteEntered: Note = {
-        noteName: `${a.payload.keyboardNote.noteName}/${a.payload.keyboardNote.octave}`,
-        noteStatus: 'incorrect',
-        accidental: a.payload.keyboardNote.accidental,
-      };
-      const updatedNotesChosen = [...s.chosenNotes, noteEntered];
+      // const noteEntered: Note = {
+      //   noteName: `${a.payload.keyboardNote.noteName}/${a.payload.keyboardNote.octave}`,
+      //   noteStatus: 'incorrect',
+      //   accidental: a.payload.keyboardNote.accidental,
+      // };
+      const updatedNotesChosen = [...s.chosenNotes, a.payload.noteToAdd];
       removeGuesses('guesses');
       drawNotes('guesses', updatedNotesChosen);
       return {
@@ -135,7 +136,6 @@ const drawNotes = (element: string, notes: Note[]): void => {
     renderer.resize(300, 100);
     const context = renderer.getContext();
 
-
     // Measure 1
     const staveMeasure1 = new Stave(10, 0, 300);
     staveMeasure1.addClef('treble').setContext(context).draw();
@@ -144,17 +144,22 @@ const drawNotes = (element: string, notes: Note[]): void => {
     const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
       if (n.accidental === '#') {
         return new StaveNote({
-          keys: [`${n.noteName}`],
+          keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
-        }).addModifier(new Accidental('#')).setStyle({fillStyle: "red"});
+        })
+          .addModifier(new Accidental('#'))
+          .setStyle({ fillStyle: 'red' });
       }
       if (n.accidental === 'b') {
         return new StaveNote({
-          keys: [`${n.noteName}`],
+          keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
         }).addModifier(new Accidental('b'));
       } else {
-        return new StaveNote({ keys: [`${n.noteName}`], duration: 'q' });
+        return new StaveNote({
+          keys: [`${n.noteName}/${n.octave}`],
+          duration: 'q',
+        });
       }
     });
 
