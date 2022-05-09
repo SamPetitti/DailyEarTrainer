@@ -15,7 +15,9 @@ import {
   Renderer,
   Accidental,
 } from 'vexflow';
-import { AUTO_STYLE } from '@angular/animations';
+import { Injectable } from '@angular/core';
+import { EvaluateNotesService } from '../../services/evaluate-notes.service';
+import { EMPTY } from 'rxjs';
 
 export interface NotesState {
   chosenNotes: Note[];
@@ -104,9 +106,7 @@ export const notesReducer = createReducer<NotesState>(
       return { ...s, error: 'already submitted all your guesses dude!' };
     } else {
       removeGuesses('guesses');
-      //figure out if notes are correct
-      //s.chosenNotes = a.payload.notes.map(n => )
-      drawNotes('output', a.payload.notes);
+      const evaluatedNotes = drawNotes('output', a.payload.notes);
 
       return {
         ...s,
@@ -166,4 +166,9 @@ const drawNotes = (element: string, notes: Note[]): void => {
     // Helper function to justify and draw a 4/4 voice
     Formatter.FormatAndDraw(context, staveMeasure1, notesMeasure1);
   }
+};
+
+//make this a pipe //this should be put in effects
+const evaluateGuesses = (notes: Note[]): Note[] => {
+  return notes;
 };
