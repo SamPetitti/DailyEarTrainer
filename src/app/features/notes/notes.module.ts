@@ -8,33 +8,21 @@ import { StoreModule } from '@ngrx/store';
 import { featureName, notesReducer } from './state/reducers/notes.reducer';
 import { NotesOptionsComponent } from './notes-options/notes-options.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: NotesComponent,
-//     children: [
-//       path:'**',
-//       component: NotesComponent
-//     ]
-//   }
-// ]
-
 const routes: Routes = [
   {
     path: '',
-    component: NotesComponent,
-    children: [
-      {
-        path: 'notes',
-        component: ChooseNotesComponent,
-      },
-      { path: '**', redirectTo: 'notes' },
-    ],
+    component: ChooseNotesComponent,
+    children: [{ path: '**', redirectTo: '' }],
   },
 ];
 
 @NgModule({
-  declarations: [NotesComponent, NotesChosenComponent, NotesOptionsComponent, ChooseNotesComponent],
+  declarations: [
+    NotesComponent,
+    NotesChosenComponent,
+    NotesOptionsComponent,
+    ChooseNotesComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

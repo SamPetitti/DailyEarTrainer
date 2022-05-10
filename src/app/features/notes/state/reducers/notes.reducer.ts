@@ -161,14 +161,21 @@ const drawNotes = (element: string, notes: Note[]): void => {
           .addModifier(new Accidental('b'))
           .setStyle({
             fillStyle: getNoteColor(n.noteStatus),
+          })
+          .setStemStyle({
+            strokeStyle: getNoteColor(n.noteStatus),
           });
       } else {
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
-        }).setStyle({
-          fillStyle: getNoteColor(n.noteStatus),
-        });
+        })
+          .setStyle({
+            fillStyle: getNoteColor(n.noteStatus),
+          })
+          .setStemStyle({
+            strokeStyle: getNoteColor(n.noteStatus),
+          });
       }
     });
 
@@ -211,7 +218,7 @@ export function getNoteColor(noteStatus: string): string {
       break;
     }
     case 'inNoteList': {
-      return '#e6e600';
+      return '#E9C327';
       break;
     }
     default:
