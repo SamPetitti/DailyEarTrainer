@@ -11,6 +11,8 @@ import { Factory, Vex } from 'vexflow';
   selector: 'app-notes-chosen',
   templateUrl: './notes-chosen.component.html',
   styleUrls: ['./notes-chosen.component.css'],
+  //angular animations?
+
 })
 export class NotesChosenComponent implements OnInit {
   constructor(private store: Store) {}

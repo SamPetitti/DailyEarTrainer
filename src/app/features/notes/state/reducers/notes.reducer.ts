@@ -102,7 +102,8 @@ export const notesReducer = createReducer<NotesState>(
       return { ...s, error: 'already submitted all your guesses dude!' };
     } else {
       removeGuesses('guesses');
-      const evaluatedNotes = drawNotes('output', a.payload.notes);
+      const evaluatedNotes = evaluateGuesses(a.payload.notes, notesForTheDay);
+      drawNotes('output', evaluatedNotes);
 
       return {
         ...s,
@@ -137,9 +138,7 @@ const drawNotes = (element: string, notes: Note[]): void => {
     const staveMeasure1 = new Stave(10, 0, 300);
     staveMeasure1.addClef('treble').setContext(context).draw();
 
-    const evaluatedNotes = evaluateGuesses(notes, notesForTheDay);
-    console.log('evaluated notes ' + evaluatedNotes);
-    const notesMeasure1: StaveNote[] = evaluatedNotes.slice(0, 5).map((n) => {
+    const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
       if (n.accidental === '#') {
         console.log(`note status: ${n.noteStatus}`);
         return new StaveNote({
@@ -216,6 +215,6 @@ export function getNoteColor(noteStatus: string): string {
       break;
     }
     default:
-      return '#00cc44';
+      return 'black';
   }
 }
