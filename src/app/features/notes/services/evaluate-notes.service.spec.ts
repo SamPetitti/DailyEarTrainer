@@ -16,49 +16,15 @@ describe('EvaluateNotesService', () => {
   });
 });
 
-
-const correctNotes : Note[] = [
-   {noteName: 'c',
+const correctNotes: Note[] = [
+  {
+    id: 1,
+    noteName: 'c',
     octave: 4,
     keyColor: 'white',
     accidental: null,
-    noteStatus: 'incorrect',
+    noteStatus: 'black',
     altNote: 'c',
     altAccidental: null,
   },
-  {
-    noteName: 'c#',
-    octave: 4,
-    keyColor: 'black',
-    accidental: '#',
-    noteStatus: 'incorrect',
-    altNote: 'd',
-    altAccidental: 'b',
-  },
-  {
-    noteName: 'd',
-    octave: 4,
-    keyColor: 'white',
-    accidental: null,
-    noteStatus: 'incorrect',
-    altNote: 'd',
-    altAccidental: null,
-  },
-  {
-    noteName: 'd#',
-    octave: 4,
-    keyColor: 'black',
-    accidental: '#',
-    noteStatus: 'incorrect',
-    altNote: 'e',
-    altAccidental: 'b',
-  },
-  {
-    noteName: 'e',
-    octave: 4,
-    keyColor: 'white',
-    accidental: null,
-    noteStatus: 'incorrect',
-    altNote: 'e',
-    altAccidental: null,
-  }]
+];

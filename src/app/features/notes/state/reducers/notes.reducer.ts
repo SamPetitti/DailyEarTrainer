@@ -4,7 +4,7 @@ import {
   createSelector,
 } from '@ngrx/store';
 export const featureName = 'featureNotes';
-import { Note } from '../../note';
+import { Note, NoteStatus } from '../../note';
 import { createReducer, on } from '@ngrx/store';
 import * as NotesActions from '../actions/notes.actions';
 import {
@@ -18,6 +18,7 @@ import {
 import { Injectable } from '@angular/core';
 import { EvaluateNotesService } from '../../services/evaluate-notes.service';
 import { EMPTY } from 'rxjs';
+import { keyboardNotes } from '../../notes-data';
 
 export interface NotesState {
   chosenNotes: Note[];
@@ -57,11 +58,6 @@ export const notesReducer = createReducer<NotesState>(
     if (s.chosenNotes.length < 5) {
       console.log(a.payload.noteToAdd.noteName);
 
-      // const noteEntered: Note = {
-      //   noteName: `${a.payload.keyboardNote.noteName}/${a.payload.keyboardNote.octave}`,
-      //   noteStatus: 'incorrect',
-      //   accidental: a.payload.keyboardNote.accidental,
-      // };
       const updatedNotesChosen = [...s.chosenNotes, a.payload.noteToAdd];
       removeGuesses('guesses');
       drawNotes('guesses', updatedNotesChosen);
@@ -127,6 +123,7 @@ const removeGuesses = (elementName: string): void => {
   }
 };
 
+const notesForTheDay: number[] = [1, 2, 3, 4, 5];
 const drawNotes = (element: string, notes: Note[]): void => {
   if (notes.length > 0) {
     console.log(notes.map((n) => n.noteName));
@@ -140,25 +137,36 @@ const drawNotes = (element: string, notes: Note[]): void => {
     const staveMeasure1 = new Stave(10, 0, 300);
     staveMeasure1.addClef('treble').setContext(context).draw();
 
-    console.log(notes.map((n) => n.noteName));
-    const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
+
+    const evaluatedNotes = evaluateGuesses(notes, notesForTheDay);
+    console.log("evaluated notes " + evaluatedNotes);
+    const notesMeasure1: StaveNote[] = evaluatedNotes.slice(0, 5).map((n) => {
       if (n.accidental === '#') {
+        console.log(`note status: ${n.noteStatus}`);
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
         })
           .addModifier(new Accidental('#'))
-          .setStyle({ fillStyle: 'red' });
+          .setStyle({
+            fillStyle: n.noteStatus,
+          });
       }
       if (n.accidental === 'b') {
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
-        }).addModifier(new Accidental('b'));
+        })
+          .addModifier(new Accidental('b'))
+          .setStyle({
+            fillStyle: n.noteStatus,
+          });
       } else {
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
+        }).setStyle({
+          fillStyle: n.noteStatus,
         });
       }
     });
@@ -169,6 +177,28 @@ const drawNotes = (element: string, notes: Note[]): void => {
 };
 
 //make this a pipe //this should be put in effects
-const evaluateGuesses = (notes: Note[]): Note[] => {
-  return notes;
+export const evaluateGuesses = (
+  noteGuesses: Note[],
+  correctNotes: number[]
+): Note[] => {
+  console.log(noteGuesses);
+  let evaluatedGuesses: Note[] = [];
+  for (let i = 0; i < noteGuesses.length; i++) {
+    console.log(`note guesses id: ${noteGuesses[i].id}`);
+    if (noteGuesses[i].id === correctNotes[i]) {
+      const updatedGuess = { ...noteGuesses[i] };
+      updatedGuess.noteStatus = 'green';
+      evaluatedGuesses.push(updatedGuess);
+    } else {
+      if (correctNotes.includes(noteGuesses[i].id)) {
+        const updatedGuess = { ...noteGuesses[i] };
+        updatedGuess.noteStatus = 'yellow';
+        evaluatedGuesses.push(updatedGuess);
+      } else {
+        const updatedGuess = { ...noteGuesses[i] };
+        evaluatedGuesses.push(updatedGuess);
+      }
+    }
+  }
+  return evaluatedGuesses;
 };

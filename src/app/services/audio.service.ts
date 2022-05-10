@@ -9,11 +9,12 @@ export class AudioService {
   getAudioNotes(): Note[] {
     return [
       {
+        id:1,
         noteName: 'c',
         octave: 4,
         keyColor: 'white',
         accidental: null,
-        noteStatus: 'incorrect',
+        noteStatus: 'black',
         altNote: 'c',
         altAccidental: null,
       },

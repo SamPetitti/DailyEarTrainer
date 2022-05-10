@@ -10,17 +10,18 @@ export interface NotesList {
 }
 
 export interface Note {
+  id: number;
   noteName: string;
   keyColor: KeyColor;
   octave: number;
   accidental: Accidental;
   noteStatus: NoteStatus;
   altNote: string;
-  altAccidental: Accidental
+  altAccidental: Accidental;
 }
 
 export type KeyColor = 'white' | 'black';
 
 export type Accidental = '#' | 'b' | null;
 
-export type NoteStatus = 'incorrect' | 'inNoteList' | 'correct';
+export type NoteStatus = 'black' | 'yellow' | 'green';
