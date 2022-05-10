@@ -137,9 +137,8 @@ const drawNotes = (element: string, notes: Note[]): void => {
     const staveMeasure1 = new Stave(10, 0, 300);
     staveMeasure1.addClef('treble').setContext(context).draw();
 
-
     const evaluatedNotes = evaluateGuesses(notes, notesForTheDay);
-    console.log("evaluated notes " + evaluatedNotes);
+    console.log('evaluated notes ' + evaluatedNotes);
     const notesMeasure1: StaveNote[] = evaluatedNotes.slice(0, 5).map((n) => {
       if (n.accidental === '#') {
         console.log(`note status: ${n.noteStatus}`);
@@ -187,12 +186,12 @@ export const evaluateGuesses = (
     console.log(`note guesses id: ${noteGuesses[i].id}`);
     if (noteGuesses[i].id === correctNotes[i]) {
       const updatedGuess = { ...noteGuesses[i] };
-      updatedGuess.noteStatus = 'green';
+      updatedGuess.noteStatus = 'g#009933';
       evaluatedGuesses.push(updatedGuess);
     } else {
       if (correctNotes.includes(noteGuesses[i].id)) {
         const updatedGuess = { ...noteGuesses[i] };
-        updatedGuess.noteStatus = 'yellow';
+        updatedGuess.noteStatus = '#c9c91d';
         evaluatedGuesses.push(updatedGuess);
       } else {
         const updatedGuess = { ...noteGuesses[i] };
