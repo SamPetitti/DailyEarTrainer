@@ -24,4 +24,4 @@ export type KeyColor = 'white' | 'black';
 
 export type Accidental = '#' | 'b' | null;
 
-export type NoteStatus = 'black' | '#c9c91d' | 'g#009933';
+export type NoteStatus = 'incorrect' | 'correct' | 'inNoteList';

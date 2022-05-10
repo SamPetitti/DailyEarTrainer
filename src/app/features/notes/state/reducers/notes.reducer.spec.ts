@@ -12,7 +12,7 @@ describe('Notes Reducer', () => {
         octave: 4,
         keyColor: 'white',
         accidental: null,
-        noteStatus: 'black',
+        noteStatus: 'incorrect',
         altNote: 'c',
         altAccidental: null,
       },
@@ -22,7 +22,7 @@ describe('Notes Reducer', () => {
         octave: 4,
         keyColor: 'black',
         accidental: '#',
-        noteStatus: 'black',
+        noteStatus: 'incorrect',
         altNote: 'd',
         altAccidental: 'b',
       },
@@ -32,7 +32,7 @@ describe('Notes Reducer', () => {
         octave: 4,
         keyColor: 'white',
         accidental: null,
-        noteStatus: 'black',
+        noteStatus: 'incorrect',
         altNote: 'd',
         altAccidental: null,
       },
@@ -42,7 +42,7 @@ describe('Notes Reducer', () => {
         octave: 4,
         keyColor: 'black',
         accidental: '#',
-        noteStatus: 'black',
+        noteStatus: 'incorrect',
         altNote: 'e',
         altAccidental: 'b',
       },
@@ -50,9 +50,9 @@ describe('Notes Reducer', () => {
         id: 5,
         noteName: 'e',
         octave: 4,
-        keyColor: 'white',
+        keyColor: 'black',
         accidental: null,
-        noteStatus: 'black',
+        noteStatus: 'incorrect',
         altNote: 'e',
         altAccidental: null,
       },
@@ -60,26 +60,26 @@ describe('Notes Reducer', () => {
   });
 
   it('should evaluate correctNotes', () => {
-    const correctNotes: number[] = [5,4,3,2,1];
+    const correctNotes: number[] = [5, 4, 3, 2, 1];
 
     const evaluatedNotes = evaluateGuesses(noteGuesses, correctNotes);
 
-    expect(evaluatedNotes[0].noteStatus).toBe('yellow');
-    expect(evaluatedNotes[1].noteStatus).toBe('yellow');
-    expect(evaluatedNotes[2].noteStatus).toBe('green');
-    expect(evaluatedNotes[3].noteStatus).toBe('yellow');
-    expect(evaluatedNotes[4].noteStatus).toBe('yellow');
+    expect(evaluatedNotes[0].noteStatus).toBe('inNoteList');
+    expect(evaluatedNotes[1].noteStatus).toBe('inNoteList');
+    expect(evaluatedNotes[2].noteStatus).toBe('correct');
+    expect(evaluatedNotes[3].noteStatus).toBe('inNoteList');
+    expect(evaluatedNotes[4].noteStatus).toBe('inNoteList');
   });
 
   it('should evaluate in notes list notes', () => {
-    const correctNotes: number[] = [13,12,11,10,1];
+    const correctNotes: number[] = [13, 12, 11, 10, 1];
 
     const evaluatedNotes = evaluateGuesses(noteGuesses, correctNotes);
 
-    expect(evaluatedNotes[0].noteStatus).toBe('yellow');
-    expect(evaluatedNotes[1].noteStatus).toBe('black');
-    expect(evaluatedNotes[2].noteStatus).toBe('black');
-    expect(evaluatedNotes[3].noteStatus).toBe('black');
-    expect(evaluatedNotes[4].noteStatus).toBe('black');
+    expect(evaluatedNotes[0].noteStatus).toBe('inNoteList');
+    expect(evaluatedNotes[1].noteStatus).toBe('incorrect');
+    expect(evaluatedNotes[2].noteStatus).toBe('incorrect');
+    expect(evaluatedNotes[3].noteStatus).toBe('incorrect');
+    expect(evaluatedNotes[4].noteStatus).toBe('incorrect');
   });
 });

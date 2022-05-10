@@ -148,7 +148,10 @@ const drawNotes = (element: string, notes: Note[]): void => {
         })
           .addModifier(new Accidental('#'))
           .setStyle({
-            fillStyle: n.noteStatus,
+            fillStyle: getNoteColor(n.noteStatus),
+          })
+          .setStemStyle({
+            strokeStyle: getNoteColor(n.noteStatus),
           });
       }
       if (n.accidental === 'b') {
@@ -158,14 +161,14 @@ const drawNotes = (element: string, notes: Note[]): void => {
         })
           .addModifier(new Accidental('b'))
           .setStyle({
-            fillStyle: n.noteStatus,
+            fillStyle: getNoteColor(n.noteStatus),
           });
       } else {
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
         }).setStyle({
-          fillStyle: n.noteStatus,
+          fillStyle: getNoteColor(n.noteStatus),
         });
       }
     });
@@ -186,12 +189,12 @@ export const evaluateGuesses = (
     console.log(`note guesses id: ${noteGuesses[i].id}`);
     if (noteGuesses[i].id === correctNotes[i]) {
       const updatedGuess = { ...noteGuesses[i] };
-      updatedGuess.noteStatus = 'g#009933';
+      updatedGuess.noteStatus = 'correct';
       evaluatedGuesses.push(updatedGuess);
     } else {
       if (correctNotes.includes(noteGuesses[i].id)) {
         const updatedGuess = { ...noteGuesses[i] };
-        updatedGuess.noteStatus = '#c9c91d';
+        updatedGuess.noteStatus = 'inNoteList';
         evaluatedGuesses.push(updatedGuess);
       } else {
         const updatedGuess = { ...noteGuesses[i] };
@@ -201,3 +204,18 @@ export const evaluateGuesses = (
   }
   return evaluatedGuesses;
 };
+
+export function getNoteColor(noteStatus: string): string {
+  switch (noteStatus) {
+    case 'correct': {
+      return '#33cc33';
+      break;
+    }
+    case 'inNoteList': {
+      return '#e6e600';
+      break;
+    }
+    default:
+      return '#00cc44';
+  }
+}

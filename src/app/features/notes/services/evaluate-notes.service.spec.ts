@@ -23,7 +23,7 @@ const correctNotes: Note[] = [
     octave: 4,
     keyColor: 'white',
     accidental: null,
-    noteStatus: 'black',
+    noteStatus: 'incorrect',
     altNote: 'c',
     altAccidental: null,
   },
