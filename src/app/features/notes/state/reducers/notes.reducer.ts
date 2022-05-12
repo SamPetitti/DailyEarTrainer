@@ -54,9 +54,9 @@ export const errorMessage = createSelector(
 export const notesReducer = createReducer<NotesState>(
   initialState,
   on(NotesActions.addNoteChosen, (s, a): NotesState => {
-    console.log(...s.chosenNotes);
+   // console.log(...s.chosenNotes);
     if (s.chosenNotes.length < 5) {
-      console.log(a.payload.noteToAdd.noteName);
+  //   console.log(a.payload.noteToAdd.noteName);
 
       const updatedNotesChosen = [...s.chosenNotes, a.payload.noteToAdd];
       removeGuesses('guesses');
@@ -79,7 +79,7 @@ export const notesReducer = createReducer<NotesState>(
         0,
         s.chosenNotes.length - 1
       );
-      console.log(remainingNotes);
+      //console.log(remainingNotes);
 
       removeGuesses('guesses');
       drawNotes('guesses', remainingNotes);
@@ -127,7 +127,7 @@ const removeGuesses = (elementName: string): void => {
 const notesForTheDay: number[] = [1, 2, 3, 4, 5];
 const drawNotes = (element: string, notes: Note[]): void => {
   if (notes.length > 0) {
-    console.log(notes.map((n) => n.noteName));
+   // console.log(notes.map((n) => n.noteName));
     const renderer = new Renderer(element, Renderer.Backends.SVG);
 
     // Configure the rendering context.
@@ -140,7 +140,7 @@ const drawNotes = (element: string, notes: Note[]): void => {
 
     const notesMeasure1: StaveNote[] = notes.slice(0, 5).map((n) => {
       if (n.accidental === '#') {
-        console.log(`note status: ${n.noteStatus}`);
+       // console.log(`note status: ${n.noteStatus}`);
         return new StaveNote({
           keys: [`${n.noteName}/${n.octave}`],
           duration: 'q',
@@ -189,10 +189,10 @@ export const evaluateGuesses = (
   noteGuesses: Note[],
   correctNotes: number[]
 ): Note[] => {
-  console.log(noteGuesses);
+ // console.log(noteGuesses);
   let evaluatedGuesses: Note[] = [];
   for (let i = 0; i < noteGuesses.length; i++) {
-    console.log(`note guesses id: ${noteGuesses[i].id}`);
+   // console.log(`note guesses id: ${noteGuesses[i].id}`);
     if (noteGuesses[i].id === correctNotes[i]) {
       const updatedGuess = { ...noteGuesses[i] };
       updatedGuess.noteStatus = 'correct';
