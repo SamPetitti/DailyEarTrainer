@@ -16,7 +16,6 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
-    HttpClient,
   ],
   providers: [],
   bootstrap: [AppComponent],
