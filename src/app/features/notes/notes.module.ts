@@ -7,7 +7,7 @@ import { NotesChosenComponent } from './notes-chosen/notes-chosen.component';
 import { StoreModule } from '@ngrx/store';
 import { featureName, notesReducer } from './state/reducers/notes.reducer';
 import { NotesOptionsComponent } from './notes-options/notes-options.component';
-import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [
   {
@@ -22,8 +22,7 @@ const routes: Routes = [
     NotesComponent,
     NotesChosenComponent,
     NotesOptionsComponent,
-    ChooseNotesComponent,
-    HttpClientModule
+    ChooseNotesComponent
   ],
   imports: [
     CommonModule,

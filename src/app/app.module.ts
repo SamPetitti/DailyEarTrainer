@@ -17,7 +17,6 @@ import { HeaderComponent } from './components/header/header.component';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
     HttpClient,
-    HeaderComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
