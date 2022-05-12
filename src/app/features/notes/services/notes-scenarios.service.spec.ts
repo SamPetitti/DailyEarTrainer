@@ -1,16 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
-import { pipe, tap } from 'rxjs';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { inject, TestBed } from '@angular/core/testing';
+import { map, pipe, tap } from 'rxjs';
+
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 import { NotesScenariosService } from './notes-scenarios.service';
 
 describe('NotesScenariosService', () => {
   let service: NotesScenariosService;
-
+  let httpTestingController: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClient],
-      providers: [{provide: HttpClient, useValue: HttpClient}]
+      imports: [HttpClientModule],
+      providers: [NotesScenariosService],
     });
     service = TestBed.inject(NotesScenariosService);
   });
@@ -20,6 +25,7 @@ describe('NotesScenariosService', () => {
   });
 
   it('should get scenarios', () => {
-    service.$scenario.pipe(tap((t) => console.log(t))).subscribe();
+    // service.$scenario.subscribe((d) => expect(d?.date).toBe('5/12/2020'));
+    service.$scenario.subscribe();
   });
 });
