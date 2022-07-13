@@ -13,7 +13,7 @@ export class NotesScenariosService {
     @Inject(LOCALE_ID) private locale: string
   ) {}
 
-  private scenariosPath = '../../../../assets/data/notes-scenarios.json';
+  private scenariosPath = 'assets/data/notes-scenarios.json';
   $scenario = this.http.get<NotesScenarios[]>(this.scenariosPath).pipe(
     map((scenarios) =>
       scenarios.find(
