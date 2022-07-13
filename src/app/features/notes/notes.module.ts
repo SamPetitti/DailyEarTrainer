@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { featureName, notesReducer } from './state/reducers/notes.reducer';
 import { NotesOptionsComponent } from './notes-options/notes-options.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -19,10 +18,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    NotesComponent,
     NotesChosenComponent,
     NotesOptionsComponent,
-    ChooseNotesComponent
+    ChooseNotesComponent,
   ],
   imports: [
     CommonModule,

@@ -25,6 +25,6 @@ describe('NotesScenariosService', () => {
   });
 
   it('should get scenarios', () => {
-    service.$scenario.subscribe((d) => expect(d?.date).toBe('5/12/2022'));
+    service.scenario$.subscribe((d) => expect(d?.date).toBe('5/12/2022'));
   });
 });

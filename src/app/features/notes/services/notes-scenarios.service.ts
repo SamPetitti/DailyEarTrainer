@@ -14,7 +14,7 @@ export class NotesScenariosService {
   ) {}
 
   private scenariosPath = 'assets/data/notes-scenarios.json';
-  $scenario = this.http.get<NotesScenarios[]>(this.scenariosPath).pipe(
+  scenario$ = this.http.get<NotesScenarios[]>(this.scenariosPath).pipe(
     map((scenarios) =>
       scenarios.find(
         (s) => s.date === formatDate(Date.now(), 'M/dd/YYYY', this.locale)
