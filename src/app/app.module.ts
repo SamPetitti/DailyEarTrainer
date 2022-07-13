@@ -8,15 +8,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
-import { ChooseNotesComponent } from './features/notes/choose-notes/choose-notes.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    HeaderComponent,
-    ChooseNotesComponent,
-  ],
+  declarations: [AppComponent, NavigationComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
